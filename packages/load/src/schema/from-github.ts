@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
-import {buildClientSchema, buildSchema} from 'graphql';
+import {buildClientSchema, buildSchema, printSchema, parse} from 'graphql';
+import {SchemaLoader, Source} from 'graphql-config';
 
 import {SchemaHandler} from './loader';
 
@@ -93,5 +94,17 @@ export const fromGithub: SchemaHandler = function fromGithub(
 
       throw new Error('Unable to build schema from github');
     };
+  }
+};
+
+export const fromGithubLoader: SchemaLoader = async pointer => {
+  if (typeof pointer === 'string') {
+    const load = fromGithub(pointer);
+    if (load) {
+      return new Source({
+        location: pointer,
+        document: parse(printSchema(await load())),
+      });
+    }
   }
 };

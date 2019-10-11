@@ -30,8 +30,9 @@
     "graphql": "^0.13.0 || ^14.0.0"
   },
   "dependencies": {
+    "graphql-config": "3.0.0-alpha.3",
     "graphql-tag-pluck": "0.8.5",
-    "graphql-toolkit": "0.5.16",
+    "graphql-toolkit": "0.6.0-alpha.3",
     "node-fetch": "2.6.0",
     "simple-git": "1.126.0"
   },
