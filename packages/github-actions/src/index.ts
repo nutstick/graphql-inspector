@@ -204,6 +204,8 @@ async function updateCheckRun(
     ref: tools.context.ref,
     ...tools.context.repo,
   });
+  tools.log.info(checkName);
+  tools.log.info(JSON.stringify(response));
 
   const check = response.data.check_runs.find(
     check => check.name === checkName,
